@@ -4,14 +4,14 @@ Implementation http for Angular universal work based on TransferState
 
 The package can be installed using:
 
-`npm install @gorniv/ngx-universal --save`
+`npm install @brunexx/ngx-universal --save`
 
 ## TransferHttpModule
 
 in `app.module.ts`
 
 ```ts
-import { TransferHttpModule, TransferHttpService } from '@gorniv/ngx-universal';
+import { TransferHttpModule, TransferHttpService } from '@brunexx/ngx-universal';
 
 
 @NgModule({
@@ -27,7 +27,7 @@ import { TransferHttpModule, TransferHttpService } from '@gorniv/ngx-universal';
 in `app.module.ts`
 
 ```ts
-import { TransferHttpModule, TransferHttpService } from '@gorniv/ngx-universal';
+import { TransferHttpModule, TransferHttpService } from '@brunexx/ngx-universal';
 
 @NgModule({
   providers: [TransferHttpService],
@@ -39,7 +39,7 @@ import { TransferHttpModule, TransferHttpService } from '@gorniv/ngx-universal';
 use in component or service:
 
 ```ts
-import { TransferHttpService } from '@gorniv/ngx-universal';
+import { TransferHttpService } from '@brunexx/ngx-universal';
 
 ...
 

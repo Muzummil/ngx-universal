@@ -1,9 +1,9 @@
 {
   "name": "ngx-universal",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "build": "ng build && yarn copyStaticFiles",
+    "build": "ng build && npm run copyStaticFiles",
     "copyStaticFiles": "cp ./README.md ./LICENSE ./dist",
     "release:lib": "npm run prepublish:lib && cd ./lib && npm i && npm run standard",
     "prepublish:lib": "npm run build",
@@ -48,5 +48,19 @@
     "karma-jasmine-html-reporter": "1.5.2",
     "karma-coverage-istanbul-reporter": "2.1.1",
     "cookie": "0.4.0"
-  }
+  },
+  "description": "Packages for Angular Universal",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BruneXX/ngx-universal.git"
+  },
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/BruneXX/ngx-universal/issues"
+  },
+  "homepage": "https://github.com/BruneXX/ngx-universal#readme"
 }

@@ -1,4 +1,4 @@
-# ngx-universal
+# ngxc-universal
 
 Packages for Angular Universal
 
