@@ -20,6 +20,7 @@ export function mergeOptions(oldOptions: CookieOptions, newOptions?: CookieOptio
     path: isPresent(newOptions.path) ? newOptions.path : oldOptions.path,
     domain: isPresent(newOptions.domain) ? newOptions.domain : oldOptions.domain,
     expires: isPresent(newOptions.expires) ? newOptions.expires : oldOptions.expires,
+    sameSite: isPresent(newOptions.sameSite) ? newOptions.sameSite : oldOptions.sameSite,
     secure: isPresent(newOptions.secure) ? newOptions.secure : oldOptions.secure,
     httpOnly: isPresent(newOptions.httpOnly) ? newOptions.httpOnly : oldOptions.httpOnly,
     storeUnencoded: isPresent(newOptions.storeUnencoded) ? newOptions.storeUnencoded : oldOptions.storeUnencoded,

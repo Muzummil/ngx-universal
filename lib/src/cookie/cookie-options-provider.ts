@@ -18,6 +18,7 @@ export class CookieOptionsProvider {
       path: this._injector.get(APP_BASE_HREF, '/'),
       domain: null,
       expires: null,
+      sameSite: null,
       secure: false,
       httpOnly: false
     };
