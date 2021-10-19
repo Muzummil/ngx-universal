@@ -31,9 +31,9 @@ You can install this package locally with npm.
 
 ```bash
 # To get the latest stable version and update package.json file:
-npm install @brunexx/ngx-universal --save
+npm install ngxc-universal --save
 # or
-# yarn add @brunexx/ngx-universal
+# yarn add ngxc-universal
 ```
 
 After installing the library, it should be included in the SystemJS configurations.
@@ -69,7 +69,7 @@ After installing the library, it should be included in the SystemJS configuratio
       // other libraries
       rxjs: 'npm:rxjs',
       'angular2-in-memory-web-api': 'npm:angular2-in-memory-web-api',
-      ''@brunexx/ngx-universal'': 'npm:'@brunexx/ngx-universal'/bundles/ngx-universal.umd.js',
+      ''ngxc-universal'': 'npm:'ngxc-universal'/bundles/ngx-universal.umd.js',
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
@@ -98,7 +98,7 @@ These methods accepts `CookieOptions` objects as well. Leave it blank for the de
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { CookieModule } from '@brunexx/ngx-universal';
+import { CookieModule } from 'ngxc-universal';
 
 import { AppComponent } from './app.component';
 
@@ -112,7 +112,7 @@ export class AppModule {}
 
 ```typescript
 import { Component } from '@angular/core';
-import { CookieService } from '@brunexx/ngx-universal';
+import { CookieService } from 'ngxc-universal';
 
 @Component({
   selector: 'my-very-cool-app',
@@ -129,18 +129,18 @@ export class AppComponent {
 
 ### <a name="universal"></a> Angular Universal Usage
 
-`@brunexx/ngx-universal` supports usage during Server Side Rendering (SSR / Angular Universal). Getting Server Side Rendering itself set up the first time can be tricky and is outside the scope of this guide. Here, we'll assume that you've got a working SSR setup similar to the [Angular Universal Starter project](https://github.com/angular/universal-starter), and you're just trying to get `@brunexx/ngx-universal` working with SSR.
+`ngxc-universal` supports usage during Server Side Rendering (SSR / Angular Universal). Getting Server Side Rendering itself set up the first time can be tricky and is outside the scope of this guide. Here, we'll assume that you've got a working SSR setup similar to the [Angular Universal Starter project](https://github.com/angular/universal-starter), and you're just trying to get `ngxc-universal` working with SSR.
 
-_Note: during normal, client side usage, `@brunexx/ngx-universal` manipulates the client cookies attached to the `document` object. During SSR, `@brunexx/ngx-universal` will manipulate cookies in http request or response headers._
+_Note: during normal, client side usage, `ngxc-universal` manipulates the client cookies attached to the `document` object. During SSR, `ngxc-universal` will manipulate cookies in http request or response headers._
 
 #### Setup
 
-First up, edit `app.server.module.ts` (located in `root > src > app` of the Universal starter project) to overwrite @brunexx/ngx-universal's `CookieService` with @brunexx/ngx-universal's `CookieBackendService` during server side rendering.
+First up, edit `app.server.module.ts` (located in `root > src > app` of the Universal starter project) to overwrite ngxc-universal's `CookieService` with ngxc-universal's `CookieBackendService` during server side rendering.
 
 ```
 /* app.server.module.ts */
 
-import { CookieService, CookieBackendService } from '@brunexx/ngx-universal';
+import { CookieService, CookieBackendService } from 'ngxc-universal';
 
 @NgModule({
   imports: [
@@ -154,10 +154,11 @@ import { CookieService, CookieBackendService } from '@brunexx/ngx-universal';
 export class AppServerModule {}
 ```
 
-Next, we need to make providers for the `'NgxRequest'` and `'NgxResponse'` objects created by the expressjs server during SSR. You can check out the `CookieBackendService` code, but during SSR `@brunexx/ngx-universal` inject's these objects into `CookieBackendService`. To do this, edit `server.ts` (located in the root of the Universal Starter Project) to create providers for `'NgxRequest'` AND `'NgxResponse'`.
+Next, we need to make providers for the `'NgxRequest'` and `'NgxResponse'` objects created by the expressjs server during SSR. You can check out the `CookieBackendService` code, but during SSR `ngxc-universal` inject's these objects into `CookieBackendService`. To do this, edit `server.ts` (located in the root of the Universal Starter Project) to create providers for `'NgxRequest'` AND `'NgxResponse'`.
 
 ```
 /* server.ts */
+import { NgxRequest, NgxResponse } from 'ngxc-universal';
 
 // Find the call to res.render() in the file and
 // update it with providers for 'NgxRequest' and 'NgxResponse'
@@ -168,10 +169,10 @@ app.get('*', (req, res) => {
     res: res,
     providers: [
       {
-        provide: 'NgxRequest', useValue: (req)
+        provide: NgxRequest, useValue: (req)
       },
       {
-        provide: 'NgxResponse', useValue: (res)
+        provide: NgxResponse, useValue: (res)
       }
     ]
   });
@@ -189,7 +190,7 @@ Here you can find some usage examples with popular boilerplate libraries.
 A boilerplate provided by Angular team.
 _(Link: [https://github.com/angular/quickstart](https://github.com/angular/quickstart))_
 
-Just edit the `systemjs.config.js` file and add the `@brunexx/ngx-universal` there.
+Just edit the `systemjs.config.js` file and add the `ngxc-universal` there.
 
 ```typescript
 /**
@@ -221,7 +222,7 @@ Just edit the `systemjs.config.js` file and add the `@brunexx/ngx-universal` the
       // other libraries
       rxjs: 'npm:rxjs',
       'angular2-in-memory-web-api': 'npm:angular2-in-memory-web-api',
-      '@brunexx/ngx-universal': 'npm:@brunexx/ngx-universal/bundles/ngx-universal.umd.js',
+      'ngxc-universal': 'npm:ngxc-universal/bundles/ngx-universal.umd.js',
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
@@ -251,9 +252,9 @@ Add the following settings to the (constructor of) `ProjectConfig` class (path: 
 ```typescript
 let additionalPackages: ExtendPackages[] = [
   {
-    name: '@brunexx/ngx-universal,
+    name: 'ngxc-universal,
     // Path to the package's bundle
-    path: 'node_modules/@brunexx/ngx-universal/bundles/ngx-universal.umd.js',
+    path: 'node_modules/ngxc-universal/bundles/ngx-universal.umd.js',
   },
 ];
 
