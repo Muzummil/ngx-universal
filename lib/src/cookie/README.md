@@ -1,5 +1,5 @@
 
-# fork ngx-cookie [![npm version](https://img.shields.io/npm/v/@brunexx/ngx-universal.svg)](https://www.npmjs.com/package/@brunexx/ngx-universal) [![Downloads](http://img.shields.io/npm/dm/@brunexx/ngx-universal.svg)](https://npmjs.org/package/@brunexx/ngx-universal)
+# fork ngx-cookie [![npm version](https://img.shields.io/npm/v/@gorniv/ngx-universal.svg)](https://www.npmjs.com/package/@gorniv/ngx-universal) [![Downloads](http://img.shields.io/npm/dm/@gorniv/ngx-universal.svg)](https://npmjs.org/package/@gorniv/ngx-universal)
 
 # v2. Breaking changes:
 use `NgxRequest` and `NgxResponse` (replace REQUEST and RESPONSE)
@@ -31,9 +31,9 @@ You can install this package locally with npm.
 
 ```bash
 # To get the latest stable version and update package.json file:
-npm install @brunexx/ngx-universal --save
+npm install @gorniv/ngx-universal --save
 # or
-# yarn add @brunexx/ngx-universal
+# yarn add @gorniv/ngx-universal
 ```
 
 After installing the library, it should be included in the SystemJS configurations.
@@ -69,7 +69,7 @@ After installing the library, it should be included in the SystemJS configuratio
       // other libraries
       rxjs: 'npm:rxjs',
       'angular2-in-memory-web-api': 'npm:angular2-in-memory-web-api',
-      ''@brunexx/ngx-universal'': 'npm:'@brunexx/ngx-universal'/bundles/ngx-universal.umd.js',
+      ''@gorniv/ngx-universal'': 'npm:'@gorniv/ngx-universal'/bundles/ngx-universal.umd.js',
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
@@ -98,7 +98,7 @@ These methods accepts `CookieOptions` objects as well. Leave it blank for the de
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { CookieModule } from '@brunexx/ngx-universal';
+import { CookieModule } from '@gorniv/ngx-universal';
 
 import { AppComponent } from './app.component';
 
@@ -112,7 +112,7 @@ export class AppModule {}
 
 ```typescript
 import { Component } from '@angular/core';
-import { CookieService } from '@brunexx/ngx-universal';
+import { CookieService } from '@gorniv/ngx-universal';
 
 @Component({
   selector: 'my-very-cool-app',
@@ -129,18 +129,18 @@ export class AppComponent {
 
 ### <a name="universal"></a> Angular Universal Usage
 
-`@brunexx/ngx-universal` supports usage during Server Side Rendering (SSR / Angular Universal). Getting Server Side Rendering itself set up the first time can be tricky and is outside the scope of this guide. Here, we'll assume that you've got a working SSR setup similar to the [Angular Universal Starter project](https://github.com/angular/universal-starter), and you're just trying to get `@brunexx/ngx-universal` working with SSR.
+`@gorniv/ngx-universal` supports usage during Server Side Rendering (SSR / Angular Universal). Getting Server Side Rendering itself set up the first time can be tricky and is outside the scope of this guide. Here, we'll assume that you've got a working SSR setup similar to the [Angular Universal Starter project](https://github.com/angular/universal-starter), and you're just trying to get `@gorniv/ngx-universal` working with SSR.
 
-_Note: during normal, client side usage, `@brunexx/ngx-universal` manipulates the client cookies attached to the `document` object. During SSR, `@brunexx/ngx-universal` will manipulate cookies in http request or response headers._
+_Note: during normal, client side usage, `@gorniv/ngx-universal` manipulates the client cookies attached to the `document` object. During SSR, `@gorniv/ngx-universal` will manipulate cookies in http request or response headers._
 
 #### Setup
 
-First up, edit `app.server.module.ts` (located in `root > src > app` of the Universal starter project) to overwrite @brunexx/ngx-universal's `CookieService` with @brunexx/ngx-universal's `CookieBackendService` during server side rendering.
+First up, edit `app.server.module.ts` (located in `root > src > app` of the Universal starter project) to overwrite @gorniv/ngx-universal's `CookieService` with @gorniv/ngx-universal's `CookieBackendService` during server side rendering.
 
 ```
 /* app.server.module.ts */
 
-import { CookieService, CookieBackendService } from '@brunexx/ngx-universal';
+import { CookieService, CookieBackendService } from '@gorniv/ngx-universal';
 
 @NgModule({
   imports: [
@@ -154,7 +154,7 @@ import { CookieService, CookieBackendService } from '@brunexx/ngx-universal';
 export class AppServerModule {}
 ```
 
-Next, we need to make providers for the `'NgxRequest'` and `'NgxResponse'` objects created by the expressjs server during SSR. You can check out the `CookieBackendService` code, but during SSR `@brunexx/ngx-universal` inject's these objects into `CookieBackendService`. To do this, edit `server.ts` (located in the root of the Universal Starter Project) to create providers for `'NgxRequest'` AND `'NgxResponse'`.
+Next, we need to make providers for the `'NgxRequest'` and `'NgxResponse'` objects created by the expressjs server during SSR. You can check out the `CookieBackendService` code, but during SSR `@gorniv/ngx-universal` inject's these objects into `CookieBackendService`. To do this, edit `server.ts` (located in the root of the Universal Starter Project) to create providers for `'NgxRequest'` AND `'NgxResponse'`.
 
 ```
 /* server.ts */
@@ -189,7 +189,7 @@ Here you can find some usage examples with popular boilerplate libraries.
 A boilerplate provided by Angular team.
 _(Link: [https://github.com/angular/quickstart](https://github.com/angular/quickstart))_
 
-Just edit the `systemjs.config.js` file and add the `@brunexx/ngx-universal` there.
+Just edit the `systemjs.config.js` file and add the `@gorniv/ngx-universal` there.
 
 ```typescript
 /**
@@ -221,7 +221,7 @@ Just edit the `systemjs.config.js` file and add the `@brunexx/ngx-universal` the
       // other libraries
       rxjs: 'npm:rxjs',
       'angular2-in-memory-web-api': 'npm:angular2-in-memory-web-api',
-      '@brunexx/ngx-universal': 'npm:@brunexx/ngx-universal/bundles/ngx-universal.umd.js',
+      '@gorniv/ngx-universal': 'npm:@gorniv/ngx-universal/bundles/ngx-universal.umd.js',
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
@@ -251,9 +251,9 @@ Add the following settings to the (constructor of) `ProjectConfig` class (path: 
 ```typescript
 let additionalPackages: ExtendPackages[] = [
   {
-    name: '@brunexx/ngx-universal,
+    name: '@gorniv/ngx-universal,
     // Path to the package's bundle
-    path: 'node_modules/@brunexx/ngx-universal/bundles/ngx-universal.umd.js',
+    path: 'node_modules/@gorniv/ngx-universal/bundles/ngx-universal.umd.js',
   },
 ];
 
@@ -356,7 +356,6 @@ Options object should be a type of `CookieOptions` interface. The object may hav
 - **path** - {string} - The cookie will be available only for this path and its sub-paths. By default, this is the URL that appears in your `<base>` tag.
 - **domain** - {string} - The cookie will be available only for this domain and its sub-domains. For security reasons the user agent will not accept the cookie if the current domain is not a sub-domain of this domain or equal to it.
 - **expires** - {string|Date} - String of the form "Wdy, DD Mon YYYY HH:MM:SS GMT" or a Date object indicating the exact date/time this cookie will expire.
-- **sameSite** - {string} - The SameSite attribute accepts three values: [Strict|Lax|None], ref: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite
 - **secure** - {boolean} - If `true`, then the cookie will only be available through a secured connection.
 - **httpOnly** - {boolean} - If `true`, then the cookie will be set with the `HttpOnly` flag, and will only be accessible from the remote server. Helps to prevent against XSS attacks.
 - **storeUnencoded** - {boolean} - If `true`, then the cookie value will not be encoded and will be stored as provided.
